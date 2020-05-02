@@ -24,7 +24,7 @@ export default function Register(){
 
                     <button className="button" type='submit'>Cadastrar</button>
 
-                    <a href="/cadastro">Tenho cadastro</a>
+                    <a href="/">Tenho cadastro</a>
                 </form>
             </div>
 

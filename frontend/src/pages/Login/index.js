@@ -23,7 +23,7 @@ export default function Login(){
 
                     <button className="button" type='submit'>Login</button>
 
-                    <a href="/cadastro">
+                    <a href="/register">
                         <FaSignInAlt size={16}/>
                         Não tenho cadastro</a>
                 </form>
