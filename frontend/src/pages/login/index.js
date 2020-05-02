@@ -1,5 +1,5 @@
-import React from 'react';
-import { FaSignInAlt} from 'react-icons/fa';
+import React from './node_modules/react';
+import { FaSignInAlt} from './node_modules/react-icons/fa';
 
 import './styles.css';
 import logoImg from '../../assets/logo.svg';
@@ -27,8 +27,6 @@ export default function Login(){
                         <FaSignInAlt size={16}/>
                         Não tenho cadastro</a>
                 </form>
-            </div>
-
         </div>
     );
 }
