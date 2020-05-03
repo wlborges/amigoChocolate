@@ -29,8 +29,8 @@ export default function Register(){
 
         try {
             const response = await api.post('usuario', data);
-            toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
-            history.push('/');
+            toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/')});
+            
 
         } catch (error) {
             toast.error('Erro ao cadastrar', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});

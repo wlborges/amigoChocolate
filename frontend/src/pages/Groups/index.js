@@ -11,6 +11,8 @@ export default function Groups(){
     const nomeUsuario = localStorage.nome;
     
     return(
-        <h1>Olá {nomeUsuario}</h1>
+        <div className="content">
+            <h1>Olá {nomeUsuario}</h1>
+        </div>
     );
 }
