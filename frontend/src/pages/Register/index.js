@@ -26,8 +26,9 @@ export default function Register(){
 
         try {
             const response = await api.post('usuario', data);
-            console.log(response.data);
+            alert(response.data.msg);
             history.push('/');
+
         } catch (error) {
             alert('erro');
         }

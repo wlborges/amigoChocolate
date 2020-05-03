@@ -9,13 +9,14 @@ import ParticipantProfile from './pages/ParticipantProfile';
 import Details from './pages/Details';
 import AddParticipant from './pages/AddParticipant';
 import RegisterDraw from './pages/RegisterDraw'
-//import Grupos from './pages/Grupos';
+import Groups from './pages/Groups';
 
 export default function Routes(){
     return(
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Login}/>
+                <Route path="/groups" exact component={Groups}/>
                 <Route path="/register" exact component={Register}/>
                 <Route path="/myprofile" exact component={MyProfile}/>
                 <Route path="/participantprofile" exact component={ParticipantProfile}/>

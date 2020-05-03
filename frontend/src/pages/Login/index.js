@@ -20,9 +20,16 @@ export default function Login(){
             senha
         };
         try {
-            const response = await api.get('login', data);
-            localStorage.setItem('token', response.data.token);
-            history.push()
+            const response = await api.post('login', data);
+
+            if(response.data.auth){
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('nome',response.data.nome);
+                history.push('/groups');
+            }else{
+                alert(response.data.msg);
+            }
+
         } catch (error) {
             alert('Falha no login');
         }
