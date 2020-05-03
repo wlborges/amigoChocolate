@@ -6,6 +6,9 @@ import logoImg from '../../assets/logo.svg';
 
 import api from '../../services/api';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Register(){
     const[nome, setNome] = useState('');
     const[email, setEmail] = useState('');
@@ -26,11 +29,11 @@ export default function Register(){
 
         try {
             const response = await api.post('usuario', data);
-            alert(response.data.msg);
+            toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
             history.push('/');
 
         } catch (error) {
-            alert('erro');
+            toast.error('Erro ao cadastrar', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
         }
     }
 
@@ -52,7 +55,7 @@ export default function Register(){
                     <Link to="/">Tenho cadastro</Link>
                 </form>
             </div>
-
+             <ToastContainer/>
         </div>
     );
 }

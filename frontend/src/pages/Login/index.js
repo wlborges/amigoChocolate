@@ -6,11 +6,14 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 import api from '../../services/api';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
+    
     const history = useHistory();
     async function handleLogin(e){
         e.preventDefault();
@@ -27,11 +30,11 @@ export default function Login(){
                 localStorage.setItem('nome',response.data.nome);
                 history.push('/groups');
             }else{
-                alert(response.data.msg);
+                toast.error(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
             }
 
         } catch (error) {
-            alert('Falha no login');
+            toast.error("Falha no login!", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
         }
 
     }
@@ -55,6 +58,7 @@ export default function Login(){
                 </form>
             </div>
 
+            <ToastContainer/>
         </div>
     );
 }
