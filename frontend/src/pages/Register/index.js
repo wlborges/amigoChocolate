@@ -1,12 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 
 import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
+import api from '../../services/api';
+
 export default function Register(){
+    const[nome, setNome] = useState('');
+    const[email, setEmail] = useState('');
+    const[senha, setSenha] = useState('');
+    const[dataNascimento, setDataNascimento] = useState('');
+    
+    const history = useHistory();
 
-    function handleRegister(){
+    async function handleRegister(e){
+        e.preventDefault();
 
+        const data = {
+            nome,
+            email,
+            senha,
+            dataNascimento
+        };
+
+        try {
+            const response = await api.post('usuario', data);
+            console.log(response.data);
+            history.push('/');
+        } catch (error) {
+            alert('erro');
+        }
     }
 
     return(
@@ -16,15 +40,15 @@ export default function Register(){
                 <img src={logoImg} alt="logo"/>
             </div>
             <div className="formulario">
-                <form>
-                    <input placeholder="Nome"/>
-                    <input type="date"/>
-                    <input placeholder="Email" type="email"/>
-                    <input placeholder="Senha" type="password" />
+                <form onSubmit={handleRegister}>
+                    <input placeholder="Nome" value={nome} onChange={e => setNome(e.target.value)}/>
+                    <input type="date" value={dataNascimento} onChange={e => setDataNascimento(e.target.value)}/>
+                    <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                    <input placeholder="Senha" type="password" value={senha} onChange={e => setSenha(e.target.value)}/>
 
                     <button className="button" type='submit'>Cadastrar</button>
 
-                    <a href="/">Tenho cadastro</a>
+                    <Link to="/">Tenho cadastro</Link>
                 </form>
             </div>
 

@@ -9,7 +9,7 @@ import ParticipantProfile from './pages/ParticipantProfile';
 import Details from './pages/Details';
 import AddParticipant from './pages/AddParticipant';
 import RegisterDraw from './pages/RegisterDraw'
-
+//import Grupos from './pages/Grupos';
 
 export default function Routes(){
     return(
