@@ -5,14 +5,15 @@ import React from 'react';
 import './styles.css';
 //import logoImg from '../../assets/logo.svg';
 //import api from '../../services/api';
-
+import Header from '../../components/header';
 
 export default function Groups(){
     const nomeUsuario = localStorage.nome;
     
     return(
         <div className="content">
-            <h1>Olá {nomeUsuario}</h1>
+            <Header />
+            <h1>Conteúdo</h1>
         </div>
     );
 }

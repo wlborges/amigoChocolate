@@ -44,7 +44,7 @@ export default function Register(){
     return(
         <div className="login-container">
             <div className="logo">
-                <h1>Amigo <span>Chocolate</span></h1>
+                <h1><span>Amigo</span> Chocolate</h1>
                 <img src={logoImg} alt="logo"/>
             </div>
             <div className="formulario">
