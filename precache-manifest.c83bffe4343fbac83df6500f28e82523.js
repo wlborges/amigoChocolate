@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3d38d7d8f359fc9fc4ca03c7c2294cfc",
+    "revision": "47dab167c0ad3a473b4b2eb0f86f9536",
     "url": "/amigoChocolate/index.html"
   },
   {
-    "revision": "1a67597e5175f886acfb",
-    "url": "/amigoChocolate/static/css/2.e305b35c.chunk.css"
+    "revision": "b86298247caa8b232c7f",
+    "url": "/amigoChocolate/static/css/2.7a6464f0.chunk.css"
   },
   {
-    "revision": "039d48a664c962539b87",
-    "url": "/amigoChocolate/static/css/main.5d19cf2e.chunk.css"
+    "revision": "bab4e37942cd2df29728",
+    "url": "/amigoChocolate/static/css/main.213cc176.chunk.css"
   },
   {
-    "revision": "1a67597e5175f886acfb",
+    "revision": "b86298247caa8b232c7f",
     "url": "/amigoChocolate/static/js/2.f0530779.chunk.js"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/amigoChocolate/static/js/2.f0530779.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "039d48a664c962539b87",
-    "url": "/amigoChocolate/static/js/main.343b78fd.chunk.js"
+    "revision": "bab4e37942cd2df29728",
+    "url": "/amigoChocolate/static/js/main.ca24ecec.chunk.js"
   },
   {
     "revision": "2bf2402d2f519010340d",
