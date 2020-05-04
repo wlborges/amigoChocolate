@@ -29,7 +29,11 @@ export default function Register(){
 
         try {
             const response = await api.post('usuario', data);
-            toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/')});
+            if (response.data.register) {
+                toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/')});
+            } else {
+                toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/')});
+            }
             
 
         } catch (error) {
