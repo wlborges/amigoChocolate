@@ -27,7 +27,6 @@ export default function Login(){
         try {
             setSpinner(true);
             const response = await api.post('login', data);
-            setSpinner(false);
             if(response.data.auth){
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('nome',response.data.nome);
@@ -39,7 +38,7 @@ export default function Login(){
         } catch (error) {
             toast.error("Falha no login!", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
         }
-
+        setSpinner(false);
     }
 
     return(

@@ -33,7 +33,7 @@ export default function Register(){
         try {
             setSpinner(true);
             const response = await api.post('usuario', data);
-            setSpinner(false);
+            
             if (response.data.register) {
                 toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/')});
             } else {
@@ -44,6 +44,7 @@ export default function Register(){
         } catch (error) {
             toast.error('Erro ao cadastrar', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
         }
+        setSpinner(false);
     }
 
     return(
