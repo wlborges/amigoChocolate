@@ -9,11 +9,13 @@ import api from '../../services/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Spinner from '../../components/spinner';
+
 export default function Login(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [spinner, setSpinner] = useState(false);
 
-    
     const history = useHistory();
     async function handleLogin(e){
         e.preventDefault();
@@ -23,8 +25,9 @@ export default function Login(){
             senha
         };
         try {
+            setSpinner(true);
             const response = await api.post('login', data);
-
+            setSpinner(false);
             if(response.data.auth){
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('nome',response.data.nome);
@@ -50,7 +53,9 @@ export default function Login(){
                     <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
                     <input placeholder="Senha" type="password" value={senha} onChange={e => setSenha(e.target.value)}/>
 
-                    <button className="button" type='submit'>Login</button>
+                    <button className="button" type='submit'>
+                        {spinner ? <Spinner /> : "Login"}
+                    </button>
 
                     <Link to="/register">
                         <FaSignInAlt size={16}/>

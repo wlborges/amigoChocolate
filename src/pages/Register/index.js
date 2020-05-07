@@ -9,11 +9,14 @@ import api from '../../services/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Spinner from '../../components/spinner';
+
 export default function Register(){
     const[nome, setNome] = useState('');
     const[email, setEmail] = useState('');
     const[senha, setSenha] = useState('');
     const[dataNascimento, setDataNascimento] = useState('');
+    const [spinner, setSpinner] = useState(false);
     
     const history = useHistory();
 
@@ -28,7 +31,9 @@ export default function Register(){
         };
 
         try {
+            setSpinner(true);
             const response = await api.post('usuario', data);
+            setSpinner(false);
             if (response.data.register) {
                 toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/')});
             } else {
@@ -54,7 +59,9 @@ export default function Register(){
                     <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
                     <input placeholder="Senha" type="password" value={senha} onChange={e => setSenha(e.target.value)}/>
 
-                    <button className="button" type='submit'>Cadastrar</button>
+                    <button className="button" type='submit'>
+                        {spinner ? <Spinner /> : "Cadastrar"}
+                    </button>
 
                     <Link to="/">Tenho cadastro</Link>
                 </form>
