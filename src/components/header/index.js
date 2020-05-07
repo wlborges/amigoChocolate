@@ -21,9 +21,9 @@ export default function Header(){
                 <h1><span>Amigo</span> Chocolate</h1>
             </div>
             <div className="profile">
-                <FaUserCircle className="icone" size={22} />
-                <h1> Olá {primeiroNome[0]}!</h1>
                 <FaSignOutAlt className="icon" size={22} onClick={logOut}/>
+                <h1> Olá {primeiroNome[0]}!</h1>
+                <FaUserCircle className="icone" size={22} />
             </div>
 
         </div>
