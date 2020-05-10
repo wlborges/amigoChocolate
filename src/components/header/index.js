@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaUserCircle, FaSignOutAlt} from 'react-icons/fa';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './styles.css';
 
 import logoImg from '../../assets/icone.svg'

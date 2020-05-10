@@ -36,7 +36,7 @@ export default function Login(){
             }
 
         } catch (error) {
-            toast.error("Falha no login!", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            toast.error("Falha de comunicação com o servidor", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
         }
         setSpinner(false);
     }

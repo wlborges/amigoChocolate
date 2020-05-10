@@ -42,7 +42,7 @@ export default function Register(){
             
 
         } catch (error) {
-            toast.error('Erro ao cadastrar', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            toast.error('Falha de comunicação com o servidor', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
         }
         setSpinner(false);
     }
