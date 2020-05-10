@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 
-import { PulseLoader } from 'react-spinners';
+import { SyncLoader } from 'react-spinners';
 
 export default function Spinner(){
 
     return(
-        <PulseLoader color={'#E5E5E5'} loading="true" />
+        <SyncLoader color={'#E5E5E5'} loading="true" size="12" margin="3"/>
     )
 }
 
