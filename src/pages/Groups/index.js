@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 //import {Link, useHistory} from 'react-router-dom';
-//import { FaSignInAlt} from 'react-icons/fa';
+
+
 
 import './styles.css';
 //import logoImg from '../../assets/logo.svg';
-//import api from '../../services/api';
+import api from '../../services/api';
 
 import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus} from 'react-icons/fa';
 
@@ -14,7 +15,8 @@ export default function Groups(){
     //const nomeUsuario = localStorage.nome;
 
     const [cadastrar, setCadastrar] = useState(false);
-    
+    useEffect(() => {})
+
     return(
         <div>
             <Header />
@@ -23,7 +25,7 @@ export default function Groups(){
                     onMouseOut={() => setCadastrar(false)} >
                 {cadastrar ? "Cadastrar Sorteio" : ""}
                 <FaPlus size="20px" />
-                </div>
+            </div>
             <div className="content">
                 <div className="box-sorteio">
                     <div className="titulo-sorteio">
