@@ -50,4 +50,7 @@
 .profile svg:hover{
     opacity: 0.7;
 }
+.profile a{
+    color: white;
+}
 
