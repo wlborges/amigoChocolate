@@ -15,15 +15,16 @@ export default function Login(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [spinner, setSpinner] = useState(false);
-
     const history = useHistory();
 
  try {
         var url = window.location.search;
         var token = url.split('=');
+
         if (token[1] != undefined) {
             console.log("ok aqui");
             validacao(token[1]);
+            history.push('/')
         }
           
     } catch (error) {
