@@ -17,6 +17,28 @@ export default function Login(){
     const [spinner, setSpinner] = useState(false);
 
     const history = useHistory();
+
+ try {
+        var url = window.location.search;
+        var token = url.split('=');
+        if (token[1] != undefined) {
+            console.log("ok aqui");
+            validacao(token[1]);
+        }
+          
+    } catch (error) {
+        
+    }
+
+    async function validacao(token){
+        const response = await api.post('verificacao', {token} );
+        if(response.data.status){
+            toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+        }else{
+            toast.error(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+        } 
+    }
+
     async function handleLogin(e){
         e.preventDefault();
 

@@ -34,7 +34,8 @@ export default function Register(){
             setSpinner(true);
             const response = await api.post('usuario', data);
             
-            if (response.data.register) {
+            if (response.data.status) {
+                console.log(response.data.status);
                 toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/')});
             } else {
                 toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/')});
