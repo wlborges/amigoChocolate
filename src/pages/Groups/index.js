@@ -1,15 +1,10 @@
 import React, {useState, useEffect} from 'react';
-//import {Link, useHistory} from 'react-router-dom';
-
-
-
+import { Link } from 'react-router-dom';
+import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus} from 'react-icons/fa';
+import Header from '../../components/header';
 import './styles.css';
-//import logoImg from '../../assets/logo.svg';
 import api from '../../services/api';
 
-import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus} from 'react-icons/fa';
-
-import Header from '../../components/header';
 
 export default function Groups(){
     //const nomeUsuario = localStorage.nome;
@@ -20,12 +15,14 @@ export default function Groups(){
     return(
         <div>
             <Header />
-            <div className="float-button" 
-                    onMouseOver={() => setCadastrar(true)} 
-                    onMouseOut={() => setCadastrar(false)} >
-                {cadastrar ? "Cadastrar Sorteio" : ""}
-                <FaPlus size="20px" />
-            </div>
+            <Link to="/registerdraw">
+                <div className="float-button" 
+                        onMouseOver={() => setCadastrar(true)} 
+                        onMouseOut={() => setCadastrar(false)} >
+                    {cadastrar ? "Cadastrar Sorteio" : ""}
+                    <FaPlus size="20px" />
+                </div>
+            </Link>
             <div className="content">
                 <div className="box-sorteio">
                     <div className="titulo-sorteio">

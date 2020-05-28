@@ -22,7 +22,6 @@ export default function Login(){
         var token = url.split('=');
 
         if (token[1] != undefined) {
-            console.log("ok aqui");
             validacao(token[1]);
             history.push('/')
         }

@@ -9,17 +9,20 @@ export default function Header(){
     const nomeUsuario = localStorage.nome;
     const primeiroNome = nomeUsuario.split(" ");
     const history = useHistory();
-
+    
     function logOut(){
         localStorage.clear();
         history.push('/');
     }
+    function voltar(){
+        
+    }
     return(
         <div class="navbar">
-            <div className="brand">
-                <img src={logoImg} alt="logo"/>
-                <h1><span>Amigo</span> Chocolate</h1>
-            </div>
+                <div className="brand">
+                    <img src={logoImg} alt="logo"/>
+                    <h1><span>Amigo</span> Chocolate</h1>
+                </div>
             <div className="profile">
                 <FaSignOutAlt className="icon" size={22} onClick={logOut}/>
                 <h1> Olá {primeiroNome[0]}!</h1>

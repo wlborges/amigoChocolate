@@ -1,0 +1,76 @@
+.myprofile-container{
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    margin-top: 60px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.myprofile-container svg{
+    size: 20px;
+    font-size: 20px;
+    color: white;
+}
+.myprofile-container svg:hover{
+    opacity: 0.7;
+}   
+
+.logo{
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    color: #E5E5E5;
+}
+.logo h1 {
+    font-weight: 400;
+}
+.logo span{
+    font-weight: bold;
+}
+.logo svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.formulario{
+    width: 100%;
+    background-color: #4C3E7D;
+    padding: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+}
+.formulario span{
+    font-weight: light;
+}
+.formulario a{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    color: #E5E5E5;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500;
+
+}
+.formulario a:hover{
+    color: #9e9e9e;
+    text-decoration: underline;
+}
+.formulario a svg{
+    margin-right: 8px;
+}
+.formulario a svg:hover{
+    color: #9e9e9e;
+}
+.description{
+    margin-top: 3px;
+    font-size: 20px;
+    color: white;
+}

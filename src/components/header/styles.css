@@ -10,6 +10,7 @@
     display: flex;
     color: white;
 }
+
 .brand{
     display: flex;
     margin-left: 20px;
@@ -53,4 +54,3 @@
 .profile a{
     color: white;
 }
-
