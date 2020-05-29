@@ -34,7 +34,7 @@ export default function RegisterDraw(){
 
         try {
             setSpinner(true);
-
+            //console.log(config);
             const response = await api.put('usuario', data, config);
             
             if (response.data.status) {
