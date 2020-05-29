@@ -23,6 +23,16 @@ export default function RegisterDraw(){
     
     const history = useHistory();
 
+    getDados();
+
+    async function getDados(){
+        const response = await api.get('meuperfil', config);
+        console.log(response)
+        setNome(response.data.nome);
+        setEmail(response.data.email);
+        setDataNascimento(response.data.dataNascimento);
+    }
+
     async function handleRegister(e){
         e.preventDefault();
 
@@ -61,7 +71,7 @@ export default function RegisterDraw(){
                 <div className="formulario">
                     <form onSubmit={handleRegister}>
                         <FaArrowLeft onClick={voltar}/>
-                        <div className="description">Nome do Grupo</div>
+                        <div className="description">Nome</div>
                         <input placeholder="Nome" value={nome} onChange={e => setNome(e.target.value)}/>
                         <div className="description">Email</div>
                         <input type="email" value={email} onChange={e => setEmail(e.target.value)}/>

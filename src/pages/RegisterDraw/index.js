@@ -66,15 +66,15 @@ export default function RegisterDraw(){
                     <form onSubmit={handleRegister}>
                         <FaArrowLeft onClick={voltar}/>
                         <div className="description">Nome do Grupo</div>
-                        <input placeholder="Nome" value={nome} onChange={e => setNome(e.target.value)}/>
+                        <input value={nome} onChange={e => setNome(e.target.value)}/>
                         <div className="description">Data Sorteio</div>
                         <input type="date" value={dataSorteio} onChange={e => setDataSorteio(e.target.value)}/>
                         <div className="description">Data Evento</div>
                         <input type="date" value={dataEvento} onChange={e => setDataEvento(e.target.value)}/>
                         <div className="description">Valor Minimo</div>
-                        <input placeholder="Valor Minimo" type="text" value={valorMinimo} onChange={e => setValorMinimo(e.target.value)}/>
+                        <input type="text" value={valorMinimo} onChange={e => setValorMinimo(e.target.value)}/>
                         <div className="description">Valor Maximo</div>
-                        <input placeholder="Valor Maximo" type="text" value={valorMaximo} onChange={e => setValorMaximo(e.target.value)}/>
+                        <input type="text" value={valorMaximo} onChange={e => setValorMaximo(e.target.value)}/>
 
                         <button className="button" type='submit'>
                             {spinner ? <Spinner /> : "Cadastrar"}
