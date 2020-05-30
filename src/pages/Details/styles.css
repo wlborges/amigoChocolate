@@ -1,0 +1,101 @@
+.float-button{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    color: #f2f2f2;
+    background-color: #4C3E7D;
+    padding: 15px;
+    justify-content: space-between;
+    border-radius: 30px;
+    display: flex;
+    font-size: 16px;
+    cursor: pointer;
+}
+.float-button svg{
+    size: 20px;
+    font-size: 20px;
+}
+.float-button:hover{
+    width: 200px;
+}
+
+.content{
+    margin-top: 70px;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 7%;
+    align-content: flex-start;
+}
+.content .box-sorteio{
+    color: #4C3E7D;
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 380px;
+    border-radius: 11px;
+    padding: 15px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.content .box-sorteio .titulo-sorteio{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.content .box-sorteio svg{
+    color: #757575;
+
+}
+.content .box-sorteio .titulo-sorteio svg:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.content .line{
+    height: 2px;
+    background-color: #7159c1;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+}
+.content .data{
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.content .data span{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.content .box-participante{
+    color: #4C3E7D;
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 11px;
+    padding: 15px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.content .box-participante .titulo-participante{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.content .box-participante svg{
+    color: #757575;
+
+}
+.content .box-participante .titulo-participante svg:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+.content .box-participante .participante{
+    width: 100%;
+    max-width: 200px;
+    border-style: groove;
+    border-radius: 10px;
+    padding: 5px;
+}

@@ -72,7 +72,7 @@ export default function RegisterDraw(){
                     <form onSubmit={handleRegister}>
                         <FaArrowLeft onClick={voltar}/>
                         <div className="description">Nome</div>
-                        <input placeholder="Nome" value={nome} onChange={e => setNome(e.target.value)}/>
+                        <input value={nome} onChange={e => setNome(e.target.value)}/>
                         <div className="description">Email</div>
                         <input type="email" value={email} onChange={e => setEmail(e.target.value)}/>
                         <div className="description">Data Nascimento</div>

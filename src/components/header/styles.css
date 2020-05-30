@@ -17,6 +17,10 @@
     width: 50%; 
     align-content: center;
     justify-content: left;
+    cursor: pointer;
+}
+.brand:hover{
+    opacity: 0.7;
 }
 .brand h1{
     margin-top: 15px;

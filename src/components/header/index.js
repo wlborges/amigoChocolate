@@ -19,7 +19,7 @@ export default function Header(){
     }
     return(
         <div class="navbar">
-                <div className="brand">
+                <div className="brand"  onClick={() => history.push('/groups')}>
                     <img src={logoImg} alt="logo"/>
                     <h1><span>Amigo</span> Chocolate</h1>
                 </div>

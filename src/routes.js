@@ -20,7 +20,7 @@ export default function Routes(){
                 <Route path="/register" exact component={Register}/>
                 <Route path="/myprofile" exact component={MyProfile}/>
                 <Route path="/participantprofile" exact component={ParticipantProfile}/>
-                <Route path="/details" exact component={Details}/>
+                <Route path="/details/:_id" exact component={Details}/>
                 <Route path="/addparticipant" exact component={AddParticipant}/>
                 <Route path="/registerdraw" exact component={RegisterDraw}/>
             </Switch>
