@@ -45,11 +45,13 @@
 }
 .content .box-sorteio svg{
     color: #757575;
+    size: 25px;
 
 }
 .content .box-sorteio .titulo-sorteio svg:hover{
     opacity: 80%;
     cursor: pointer;
+    color: red;
 }
 
 .content .line{
@@ -86,11 +88,13 @@
 }
 .content .box-participante svg{
     color: #757575;
+    size: 25px;
 
 }
 .content .box-participante .titulo-participante svg:hover{
     opacity: 80%;
     cursor: pointer;
+    color: green;
 }
 .content .box-participante .participante{
     width: 100%;

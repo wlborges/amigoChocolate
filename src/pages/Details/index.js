@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
-import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus} from 'react-icons/fa';
+import { Link, useHistory } from 'react-router-dom';
+import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave} from 'react-icons/fa';
 import Header from '../../components/header';
 import './styles.css';
 import api from '../../services/api';
+import Popup from "reactjs-popup";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const config = { headers: {Authorization: `Bearer ${localStorage.token}`}}
 
@@ -11,7 +15,7 @@ export default function Groups(){
     const [grupo, setGrupos] = useState([]);
     const [cadastrar, setCadastrar] = useState(false);
     const [participantes, setParticipantes] = useState([]);
-
+    const history = useHistory();
 
     var id = '';
     try {
@@ -27,7 +31,16 @@ export default function Groups(){
             console.log(response.data);
             setGrupos(response.data);
         })
-    }, [localStorage.token])
+    }, [localStorage.token]);
+
+    async function confirmDelete(id){
+        const response = await api.delete('grupo/'+id, config);
+        if(response.data.status){
+            toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000, onClose: history.push('/groups')});
+        }else{
+            toast.error(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+        }
+    };
 
     return(
         <div>
@@ -45,12 +58,16 @@ export default function Groups(){
                 <div className="box-sorteio">
                     <div className="titulo-sorteio">
                         <h2>{grupo.nome}</h2>
-                        <FaTrash />
+                        <FaTrash onClick={() => confirmDelete(grupo._id)}/>
                         </div>
                     <hr className="line"/>
                     <div className="data">
                         <FaCalendarAlt />
                         <span>Data do sorteio: </span> {(grupo.dataSorteio) }
+                    </div>
+                    <div className="data">
+                        <FaCalendarAlt />
+                        <span>Data do Evento: </span> {(grupo.dataEvento) }
                     </div>
                     <div className="data">
                         <FaCheck />
@@ -60,14 +77,18 @@ export default function Groups(){
                         <FaUser />
                         <span>Criado por: </span> {grupo.criadoPor}
                     </div>
+                    <div className="data">
+                        <FaMoneyBillWave />
+                        <span>Valor entre: </span> R${grupo.valorMinimo} - {grupo.valorMaximo}
+                    </div>
                 </div>
 
 
                 <div className="box-participante">
                     <div className="titulo-participante">
-                        <FaUserFriends />
+                        <FaUserFriends size={25}/>
                         <h2>Participantes</h2>
-                        <FaUserPlus />
+                        <FaUserPlus size={25}/>
                         </div>
                     <hr className="line"/>
                     
