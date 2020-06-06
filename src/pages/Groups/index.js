@@ -25,7 +25,7 @@ export default function Groups(){
             <Link to="/registerdraw">
                 <div className="float-button" 
                         onMouseOver={() => setCadastrar(true)} 
-                        onMouseOut={() => setCadastrar(false)} >
+                        onMouseOut={() => setCadastrar(false)} disabled="disabled">
                     {cadastrar ? "Cadastrar Sorteio" : ""}
                     <FaPlus size="20px" />
                 </div>

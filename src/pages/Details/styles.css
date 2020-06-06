@@ -19,6 +19,54 @@
     width: 200px;
 }
 
+.boxpopup{
+    position: fixed;
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    margin-top: -14px;
+}
+
+.boxpopup .popup{
+    top: 20%;
+    left: 40%;
+    width: 350px;
+    position: fixed;
+    display: table-column;
+    color: #f2f2f2;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+.boxpopup .popup .close{
+    margin-top: -10px;
+    margin-left: 300px;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(214, 0, 0);
+    transition: 0.2s;
+    cursor: pointer;
+}
+.boxpopup .popup .close:hover{
+    background-color: rgba(180, 0, 0);
+    transform :rotate(90deg);
+}
+.boxpopup .popup .description{
+    margin-top: 3px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #4C3E7D;
+}
+
+
 .content{
     margin-top: 70px;
     width: 100%;
@@ -27,6 +75,7 @@
     flex-wrap: wrap;
     margin-left: 7%;
     align-content: flex-start;
+    display: flex;
 }
 .content .box-sorteio{
     color: #4C3E7D;
@@ -98,8 +147,30 @@
 }
 .content .box-participante .participante{
     width: 100%;
-    max-width: 200px;
+    max-width: 230px;
     border-style: groove;
     border-radius: 10px;
     padding: 5px;
+}
+
+.content .box-participante .participante .close{
+    margin-top: -5px;
+    margin-left: 190px;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(214, 0, 0);
+    transition: 0.2s;
+    cursor: pointer;
+}
+.content .box-participante .participante .close svg{
+    color: white;
+}
+.content .box-participante .participante .close:hover{
+    background-color: rgba(180, 0, 0);
+    transform :rotate(90deg);
 }

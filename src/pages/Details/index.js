@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave} from 'react-icons/fa';
+import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes} from 'react-icons/fa';
 import Header from '../../components/header';
 import './styles.css';
 import api from '../../services/api';
-import Popup from "reactjs-popup";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import Spinner from '../../components/spinner';
 
 const config = { headers: {Authorization: `Bearer ${localStorage.token}`}}
 
@@ -15,7 +16,10 @@ export default function Groups(){
     const [grupo, setGrupos] = useState([]);
     const [cadastrar, setCadastrar] = useState(false);
     const [participantes, setParticipantes] = useState([]);
+    const [popupAddPart, setPopupAddPart] = useState(false);
+    const [emailParticipante, setEmail] = useState('');
     const history = useHistory();
+    const [spinner, setSpinner] = useState(false);
 
     var id = '';
     try {
@@ -28,8 +32,8 @@ export default function Groups(){
     useEffect(() => {
         api.get('/grupo/'+id, config)
         .then(response => {
-            console.log(response.data);
             setGrupos(response.data);
+            setParticipantes(response.data.participantes)
         })
     }, [localStorage.token]);
 
@@ -42,9 +46,52 @@ export default function Groups(){
         }
     };
 
+    async function addParticipant(_id, email){
+
+        const data = {
+            _id,
+            email
+        };
+
+        try {
+            setSpinner(true);
+            //console.log(config);
+            const response = await api.put('grupo/participante', data, config);
+            
+            if (response.data.status) {
+                toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            } else {
+                toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            }
+        } catch (error) {
+            toast.error('Falha de comunicação com o servidor', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+        }
+        setSpinner(false);
+        setEmail('');
+    }
+
+    function popupParticipante(){
+            return(
+                <div className="boxpopup">
+                    <div className="popup">
+                        <div className="close">
+                            <FaTimes onClick={() => setPopupAddPart(false)}/>
+                        </div>
+                        <div className="description">Email</div>
+                        <input type="email" value={emailParticipante} onChange={e => setEmail(e.target.value)}/>
+
+                        <button className="button" onClick={() => addParticipant(grupo._id, emailParticipante)}>
+                            {spinner ? <Spinner /> : "Adicionar"}
+                        </button>
+                    </div>
+                </div>
+            )
+    }
+
     return(
         <div>
             <Header />
+            { popupAddPart ? popupParticipante() : ""}
             <Link to="/registerdraw">
                 <div className="float-button" 
                         onMouseOver={() => setCadastrar(true)} 
@@ -88,16 +135,21 @@ export default function Groups(){
                     <div className="titulo-participante">
                         <FaUserFriends size={25}/>
                         <h2>Participantes</h2>
-                        <FaUserPlus size={25}/>
+                        <FaUserPlus size={25} onClick={() => setPopupAddPart(true)}/>
                         </div>
                     <hr className="line"/>
-                    
-                    <div className="participante">
-                        <FaUser size="60"/>
-                        <strong>participante.nome</strong><br />participante.email
-                    </div>
+                    {participantes.map((participante, i) => 
+                        <div key={i} className="participante">
+                            <div className="close">
+                                <FaTimes/>
+                            </div>
+                            <FaUser size="60"/><br />
+                            <strong>{participante.nome}</strong><br />{participante.email}
+                        </div>
+                    )}
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 }
