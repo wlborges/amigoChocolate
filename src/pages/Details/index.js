@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes} from 'react-icons/fa';
+import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes, FaUserTimes} from 'react-icons/fa';
 import Header from '../../components/header';
 import './styles.css';
 import api from '../../services/api';
@@ -138,15 +138,22 @@ export default function Groups(){
                         <FaUserPlus size={25} onClick={() => setPopupAddPart(true)}/>
                         </div>
                     <hr className="line"/>
+                    <ul>
                     {participantes.map((participante, i) => 
-                        <div key={i} className="participante">
+                        <li key={i}>
+                            <section>
+                                <FaUser size="50"/><br />   
+                            </section>
+                            <section>
+                                <strong>{participante.nome}</strong><p>{participante.email}</p>
+                            </section>
                             <div className="close">
-                                <FaTimes/>
+                                <FaUserTimes/>
                             </div>
-                            <FaUser size="60"/><br />
-                            <strong>{participante.nome}</strong><br />{participante.email}
-                        </div>
-                    )}
+                        </li>
+                        )}
+                        
+                    </ul>
                 </div>
             </div>
             <ToastContainer/>
