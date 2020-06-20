@@ -287,9 +287,11 @@ export default function Groups(){
                             <section>
                                 <strong>{participante.nome}</strong><p>{participante.email}</p>
                             </section>
+                            {(grupo.status === "Em Aberto") &&
                             <div className="close" onClick={() => removeParticipant(grupo._id, participante.email)}>
                                 <FaUserTimes size="18"/>
                             </div>
+                            }
                         </li>
                         )}
                         

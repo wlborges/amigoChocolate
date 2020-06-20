@@ -17,7 +17,7 @@ export default function Groups(){
         .then(response => {
             setGrupos(response.data);
         })
-    }, [localStorage.token])
+    }, [])
 
     return(
         <div>
