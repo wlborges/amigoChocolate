@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes, FaUserTimes} from 'react-icons/fa';
+import {Date} from 'prismic-reactjs';
+import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes, FaUserTimes, FaGift, FaHeart, FaRandom, FaUndo, FaEye, FaEyeSlash} from 'react-icons/fa';
 import Header from '../../components/header';
 import './styles.css';
 import api from '../../services/api';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactTooltip from "react-tooltip";
 
 import Spinner from '../../components/spinner';
 
@@ -18,8 +20,13 @@ export default function Groups(){
     const [participantes, setParticipantes] = useState([]);
     const [popupAddPart, setPopupAddPart] = useState(false);
     const [emailParticipante, setEmail] = useState('');
+    const [popupAddWishList, setWishList] = useState(false);
+    const [wishItem, setWishItem] = useState('');
     const history = useHistory();
     const [spinner, setSpinner] = useState(false);
+
+    const [amigoOculto, setAmigo] = useState('');
+    const [ocultaAmigo, setOcultaAmigo] = useState(false);
 
     var id = '';
     try {
@@ -37,6 +44,12 @@ export default function Groups(){
         })
     }, [localStorage.token]);
 
+    async function atualizar(){
+        const returnGrupo = await api.get('/grupo/'+id, config);
+        setGrupos(returnGrupo.data);
+        setParticipantes(returnGrupo.data.participantes)
+    }
+
     async function confirmDelete(id){
         const response = await api.delete('grupo/'+id, config);
         if(response.data.status){
@@ -47,12 +60,10 @@ export default function Groups(){
     };
 
     async function addParticipant(_id, email){
-
         const data = {
             _id,
             email
         };
-
         try {
             setSpinner(true);
             //console.log(config);
@@ -67,9 +78,89 @@ export default function Groups(){
             toast.error('Falha de comunicação com o servidor', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
         }
         setSpinner(false);
+        atualizar();
+        setEmail('');
+    }
+    async function removeParticipant(_id, email){
+        const data = {
+            _id,
+            email
+        };
+        try {
+            const response = await api.post('grupo/participante', data, config);
+            if (response.data.status) {
+                toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            } else {
+                toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            }
+        } catch (error) {
+            toast.error('Falha de comunicação com o servidor', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+        }
+        atualizar();
         setEmail('');
     }
 
+    async function addWishItem(_id, desejo){
+        const data = {
+            _id,
+            desejo
+        };
+        try {
+            setSpinner(true);
+            //console.log(config);
+            const response = await api.put('/grupo/addlista', data, config);
+            
+            if (response.data.status) {
+                toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            } else {
+                toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            }
+        } catch (error) {
+            toast.error('Falha de comunicação com o servidor', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+        }
+        setSpinner(false);
+        atualizar();
+        setEmail('');
+    }
+    async function sortear(_id){
+        try {
+            setSpinner(true);
+            //console.log(config);
+            const response = await api.get('/grupo/sorteio/'+ _id, config);
+            
+            if (response.data.status) {
+                toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            } else {
+                toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            }
+        } catch (error) {
+            toast.error('Falha de comunicação com o servidor', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+        }
+        setSpinner(false);
+        atualizar();
+        setEmail('');
+    }
+    async function cancelarSortear(_id){
+        try {
+            const data = {
+                _id
+            };
+            setSpinner(true);
+            //console.log(config);
+            const response = await api.post('/grupo/sorteio', data, config);
+            
+            if (response.data.status) {
+                toast.success(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            } else {
+                toast.warning(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+            }
+        } catch (error) {
+            toast.error('Falha de comunicação com o servidor', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});
+        }
+        setSpinner(false);
+        atualizar();
+        setEmail('');
+    }
     function popupParticipante(){
             return(
                 <div className="boxpopup">
@@ -88,10 +179,33 @@ export default function Groups(){
             )
     }
 
+    function popupWishList(){
+        return(
+            <div className="boxpopup">
+                <div className="popup">
+                    <div className="close">
+                        <FaTimes onClick={() => setWishList(false)}/>
+                    </div>
+                    <div className="description">Item Desejado</div>
+                    <input type="email" value={wishItem} onChange={e => setWishItem(e.target.value)}/>
+
+                    <button className="button" onClick={() => addWishItem(grupo._id, wishItem)}>
+                        {spinner ? <Spinner /> : "Adicionar"}
+                    </button>
+                </div>
+            </div>
+        )
+    }
+    function salvaAmigo(participanteAmigo){
+        localStorage.setItem('amigo',participanteAmigo);
+        //setAmigo(participanteAmigo);
+    }
+
     return(
         <div>
             <Header />
-            { popupAddPart ? popupParticipante() : ""}
+            { popupAddPart && grupo.status === "Em Aberto" ? popupParticipante() : ""}
+            { popupAddWishList ? popupWishList() : ""}
             <Link to="/registerdraw">
                 <div className="float-button" 
                         onMouseOver={() => setCadastrar(true)} 
@@ -102,7 +216,7 @@ export default function Groups(){
             </Link>
 
             <div className="content">
-                <div className="box-sorteio">
+                <div className="box-sorteios">
                     <div className="titulo-sorteio">
                         <h2>{grupo.nome}</h2>
                         <FaTrash onClick={() => confirmDelete(grupo._id)}/>
@@ -128,6 +242,29 @@ export default function Groups(){
                         <FaMoneyBillWave />
                         <span>Valor entre: </span> R${grupo.valorMinimo} - {grupo.valorMaximo}
                     </div>
+                    <div className="datalink" onClick={() => setWishList(true)}>
+                        <FaHeart />
+                        <span>Lista de desejos</span>
+                    </div>
+                    {(grupo.status === "Sorteado") &&
+                        <div className="datalink" onClick={() => setOcultaAmigo(!ocultaAmigo)}>
+                            <FaUserFriends />
+                            <span>Amigo: </span>{ocultaAmigo? localStorage.amigo : ""}
+                            {ocultaAmigo ? <FaEyeSlash /> : <FaEye />}
+                        </div>
+                    }
+                    {(grupo.status === "Sorteado") &&
+                        <div className="datalink" onClick={() => cancelarSortear(grupo._id)}>
+                            <FaUndo />
+                            <span>Cancelar Sorteio</span>
+                        </div>
+                    }
+                    {(grupo.status === "Em Aberto") &&
+                        <div className="datalink" onClick={() => sortear(grupo._id)}>
+                            <FaRandom />
+                            <span>Sortear</span>
+                        </div>
+                    }
                 </div>
 
 
@@ -140,15 +277,18 @@ export default function Groups(){
                     <hr className="line"/>
                     <ul>
                     {participantes.map((participante, i) => 
-                        <li key={i}>
+                        <li key={i} data-tip={participante.listaDesejos}>
+                            <ReactTooltip effect="solid" multiline="true" place="bottom"/>
+                            {(participante.email === localStorage.email) ? salvaAmigo(participante.amigo):""}
+                            {console.log(participante.amigo)}
                             <section>
                                 <FaUser size="50"/><br />   
                             </section>
                             <section>
                                 <strong>{participante.nome}</strong><p>{participante.email}</p>
                             </section>
-                            <div className="close">
-                                <FaUserTimes/>
+                            <div className="close" onClick={() => removeParticipant(grupo._id, participante.email)}>
+                                <FaUserTimes size="18"/>
                             </div>
                         </li>
                         )}
@@ -157,6 +297,7 @@ export default function Groups(){
                 </div>
             </div>
             <ToastContainer/>
+            <ReactTooltip />
         </div>
     );
 }

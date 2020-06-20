@@ -52,6 +52,7 @@ export default function Login(){
             if(response.data.auth){
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('nome',response.data.nome);
+                localStorage.setItem('email',email);
                 history.push('/groups');
             }else{
                 toast.error(response.data.msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000});

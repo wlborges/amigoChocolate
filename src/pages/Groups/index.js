@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus} from 'react-icons/fa';
+import { FaCalendarAlt, FaCheck, FaUser, FaPlus} from 'react-icons/fa';
 import Header from '../../components/header';
 import './styles.css';
 import api from '../../services/api';
@@ -37,7 +37,6 @@ export default function Groups(){
                 <div className="box-sorteio" onClick={() => history.push('/details/'+grupo._id)}>
                     <div className="titulo-sorteio">
                         <h2>{grupo.nome}</h2>
-                        <FaTrash />
                         </div>
                     <hr className="line"/>
                     <div className="data">
