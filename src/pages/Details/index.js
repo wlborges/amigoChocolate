@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import {Date} from 'prismic-reactjs';
-import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes, FaUserTimes, FaGift, FaHeart, FaRandom, FaUndo, FaEye, FaEyeSlash} from 'react-icons/fa';
+import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes, FaUserTimes, FaHeart, FaRandom, FaUndo, FaEye, FaEyeSlash} from 'react-icons/fa';
 import Header from '../../components/header';
 import './styles.css';
 import api from '../../services/api';
@@ -25,7 +24,7 @@ export default function Groups(){
     const history = useHistory();
     const [spinner, setSpinner] = useState(false);
 
-    const [amigoOculto, setAmigo] = useState('');
+    //const [amigoOculto, setAmigo] = useState('');
     const [ocultaAmigo, setOcultaAmigo] = useState(false);
 
     var id = '';

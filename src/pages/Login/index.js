@@ -21,7 +21,7 @@ export default function Login(){
         var url = window.location.search;
         var token = url.split('=');
 
-        if (token[1] != undefined) {
+        if (token[1] !== undefined) {
             validacao(token[1]);
             history.push('/')
         }

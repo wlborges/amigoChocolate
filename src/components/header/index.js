@@ -14,9 +14,6 @@ export default function Header(){
         localStorage.clear();
         history.push('/');
     }
-    function voltar(){
-        
-    }
     return(
         <div class="navbar">
                 <div className="brand"  onClick={() => history.push('/groups')}>

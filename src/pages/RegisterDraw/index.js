@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { FaArrowLeft} from 'react-icons/fa';
 import Header from '../../components/header';
 

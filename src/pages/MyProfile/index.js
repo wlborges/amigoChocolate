@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { FaArrowLeft} from 'react-icons/fa';
 import Header from '../../components/header';
 
 import './styles.css';
-import logoImg from '../../assets/logo.svg';
 
 import api from '../../services/api';
 
