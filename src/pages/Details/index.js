@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
-<<<<<<< HEAD
 import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes, FaUserTimes, FaHeart, FaRandom, FaUndo, FaEye, FaEyeSlash} from 'react-icons/fa';
-=======
-import { FaTrash, FaCalendarAlt, FaCheck, FaUser, FaPlus, FaUserFriends, FaUserPlus, FaMoneyBillWave, FaTimes} from 'react-icons/fa';
->>>>>>> parent of a701131... details
 import Header from '../../components/header';
 import './styles.css';
 import api from '../../services/api';
@@ -45,7 +41,7 @@ export default function Groups(){
             setGrupos(response.data);
             setParticipantes(response.data.participantes)
         })
-    }, [localStorage.token]);
+    }, []);
 
     async function atualizar(){
         const returnGrupo = await api.get('/grupo/'+id, config);
@@ -278,8 +274,8 @@ export default function Groups(){
                         <FaUserPlus size={25} onClick={() => setPopupAddPart(true)}/>
                         </div>
                     <hr className="line"/>
+                    <ul>
                     {participantes.map((participante, i) => 
-<<<<<<< HEAD
                         <li key={i} data-tip={participante.listaDesejos}>
                             <ReactTooltip effect="solid" multiline="true" place="bottom"/>
                             {(participante.email === localStorage.email) ? salvaAmigo(participante.amigo):""}
@@ -299,16 +295,6 @@ export default function Groups(){
                         )}
                         
                     </ul>
-=======
-                        <div key={i} className="participante">
-                            <div className="close">
-                                <FaTimes/>
-                            </div>
-                            <FaUser size="60"/><br />
-                            <strong>{participante.nome}</strong><br />{participante.email}
-                        </div>
-                    )}
->>>>>>> parent of a701131... details
                 </div>
             </div>
             <ToastContainer/>
